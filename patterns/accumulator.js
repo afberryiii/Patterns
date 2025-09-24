@@ -22,7 +22,15 @@ export function sumToN(n) {
  * @returns `1` if n is 0
  */
 export function factorial(n) {
-  // TODO
+  if (typeof n !== "number") return NaN;
+  if (n < 0) return undefined;
+  if (n === 0) return 1;
+
+  let product = 1;
+  for (let i = 1; i <= n; i++) {
+    product *= i;
+  }
+  return product;
 }
 
 /**
@@ -32,7 +40,18 @@ export function factorial(n) {
  * @returns `[]` if n is 0 or negative
  */
 export function buildNArray(n) {
-  // TODO
+  if (typeof n !== "number") {
+    return null;
+  }
+  if (n <= 0) {
+    return [];
+  }
+
+  const result = [];
+  for (let i = 1; i <= n; i++) {
+    result.push(i);
+  }
+  return result;
 }
 
 /**
@@ -40,7 +59,24 @@ export function buildNArray(n) {
  * @returns {string} the longest string in `strings`
  */
 export function getLongestString(strings) {
-  // TODO
+  if (!strings || typeof strings.length !== "number" || strings.length === 0) {
+    return "";
+  }
+
+  let longestString = "";
+
+  for (let i = 0; i < strings.length; i++) {
+    const currentString = strings[i];
+
+    if (
+      typeof currentString === "string" &&
+      currentString.length > longestString.length
+    ) {
+      longestString = currentString;
+    }
+  }
+
+  return longestString;
 }
 
 /**
@@ -48,7 +84,23 @@ export function getLongestString(strings) {
  * @returns {number} the number of students present
  */
 export function countPresent(attendance) {
-  // TODO
+  let presentCount = 0;
+
+  if (!attendance || typeof attendance.length !== "number") {
+    return 0;
+  }
+
+  for (let i = 0; i < attendance.length; i++) {
+    const entry = attendance[i];
+    if (
+      (typeof entry === "string" && entry.toLowerCase() === "p") ||
+      entry === true
+    ) {
+      presentCount++;
+    }
+  }
+
+  return presentCount;
 }
 
 /**
@@ -62,5 +114,34 @@ export function countPresent(attendance) {
  * @returns `null` if `dna` is not a string
  */
 export function complementDNA(dna) {
-  // TODO
+  if (typeof dna !== "string") {
+    return null;
+  }
+  let complementaryStrand = "";
+
+  for (let i = 0; i < dna.length; i++) {
+    const base = dna[i];
+
+    if (base === "A") {
+      complementaryStrand += "T";
+    } else if (base === "T") {
+      complementaryStrand += "A";
+    } else if (base === "C") {
+      complementaryStrand += "G";
+    } else if (base === "G") {
+      complementaryStrand += "C";
+    } else if (base === "a") {
+      complementaryStrand += "t";
+    } else if (base === "t") {
+      complementaryStrand += "a";
+    } else if (base === "c") {
+      complementaryStrand += "g";
+    } else if (base === "g") {
+      complementaryStrand += "c";
+    } else {
+      complementaryStrand += base;
+    }
+  }
+
+  return complementaryStrand;
 }
